@@ -1,0 +1,59 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">List of Offence</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        <table class="table table-boardered">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Offence Name</th>
+                    <th>Offence Comments</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <!-- Data from DB -->
+            {% for data in offence_data %}
+            <tr>
+                <td>{{ data.offence_name }}</td>
+                <td>{{ data.comments }}</td>
+                <td>
+                    <form action="{% url 'offence_detail' data.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-primary" value="Detail">
+                    </form>
+                </td>
+
+                <td>
+                    <form action="{% url 'offence_edit' data.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-secondary" value="Update">
+                    </form> 
+                </td>
+                <td>
+                    <form action="{% url 'offence_delete' data.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </form>
+                </td>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

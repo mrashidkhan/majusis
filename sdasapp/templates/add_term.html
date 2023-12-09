@@ -1,0 +1,90 @@
+{% load static %}
+
+{% block body %}
+{% include 'navigation.html' %}
+<script>
+  label {
+    display: block;
+    font: 1 rem 'Fira Sans',
+    sans - serif;
+  }
+
+  input,
+  label {
+    margin: .4 rem 0;
+  }
+</script>
+<hr>
+
+
+
+<marquee>
+  Add Term
+</marquee>
+
+<div class="container card p-3 mt-2 border-dark mx-auto" style="width: 45rem; margin: 10px">
+  <div class="row mt-3">
+    <div class="col-sm-12 mx-auto bg-light">
+      {% comment %} <h5 class="text-center">Add Term</h5> {% endcomment %}
+      <h4 class="alert alert-primary text-center mt-2">Add Term</h4>
+      <hr>
+      <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+    <div class="alert alert-danger">
+      {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+    <div class="form-group">
+      {{ form.term_name.label_tag }}
+      {{ form.term_name }}
+      {% if form.term_name.errors %}
+      <div class="alert alert-danger">
+        {{ form.term_name.errors }}
+      </div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.term_start_date.label_tag }}
+      {{ form.term_start_date }}
+      {% if form.term_start_date.errors %}
+      <div class="alert alert-danger">
+        {{ form.term_start_date.errors }}
+      </div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.term_end_date.label_tag }}
+      {{ form.term_end_date }}
+      {% if form.term_end_date.errors %}
+      <div class="alert alert-danger">
+        {{ form.term_end_date.errors }}
+      </div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.comments.label_tag }}
+      {{ form.comments }}
+      {% if form.comments.errors %}
+      <div class="alert alert-danger">
+        {{ form.comments.errors }}
+      </div>
+      {% endif %}
+    </div>     
+        <div class="mt-5">
+          <button type="submit" class="btn btn-primary">Add Term</button>
+          <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+          {% comment %} <button href="{% url 'faculty_read' %}" class="btn btn-outline-dark ms-2">List All
+            Terms</button> {% endcomment %}
+          <a href="{% url 'term_read' %}">
+            <button class="btn btn-outline-dark ms-2" type="button">List of Terms</button>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock body %}

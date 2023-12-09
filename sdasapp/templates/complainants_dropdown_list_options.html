@@ -1,0 +1,8 @@
+<option value="">------Select Complainant-----</option>
+{% for complainant in complainants %}
+    {% if complainant.user_type == "Student" %}
+        <option value= "{{complainant.id}}">{{complainant.student_id }} {{complainant.first_name }} {{complainant.last_name }}</option>
+    {% else %}
+        <option value="{{complainant.id}}">{{complainant.first_name }} {{complainant.last_name }}</option>
+    {% endif %}
+{% endfor %}

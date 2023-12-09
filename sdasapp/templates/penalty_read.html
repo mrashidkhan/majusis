@@ -1,0 +1,59 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+
+<div class="container card  border-dark ">
+
+        <div class="row">
+            <table class="table table-boardered">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Penalty ID</th>
+                        <th>Penalty Name</th>
+                        <th>Penalty Comments</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <!-- Data from DB -->
+                {% for data in penalty_read %}
+                <tr>
+                    <td>{{ data.id }}</td>
+                    <td>{{ data.penalty_name }}</td>
+                    <td>{{ data.comments }}</td>
+                    
+                    <td>
+                        <form action="{% url 'penalty_detail' data.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-primary" value="Detail">
+                        </form>
+                    </td>
+
+                    <td><a href="{% url 'penalty_edit' data.id %}">
+                            <button class="btn btn-secondary" type="button">Update</button>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{% url 'penalty_delete' data.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% include 'footer.html' %}
+{% endblock body %}

@@ -1,0 +1,47 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">Faculty</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        {% comment %} <h2 style="margin-top:12px" align="center">Edit Faculty</h2> {% endcomment %}
+        <hr>
+        <div class="form-group col-md-6">
+            <form method="POST" action="{% url 'faculty_read' %}">
+                {% csrf_token %}
+
+
+                <label for="facultyName" size="60" style="margin-top:10px">Faculty Name</label>
+                <input type="text" class="form-control" name="faculty_name" id="facultyName" size="60"
+                    value="{{faculty_data.faculty_name}}" disabled>
+
+                    
+                    
+                <button type="submit" class="btn btn-primary" style="margin-top:12px">Submit</button>
+                
+
+            </form>
+        </div>
+        <div class="form-group col-md-6">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

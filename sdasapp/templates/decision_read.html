@@ -1,0 +1,66 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">List of Decisions</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        <table class="table table-boardered text-center">
+            <thead class="table-secondary">
+                {% comment %} complain_detail = models.CharField(max_length=255)
+                complain_date = models.DateTimeField()
+                complainant = models.ForeignKey(Student, on_delete=models.CASCADE)
+                register_by = models.ForeignKey(User, on_delete=models.CASCADE ) {% endcomment %}
+                <tr>
+                    <th>Decision ID</th>
+                    <th>Offender Student</th>
+                    <th>Complaint</th>
+                    <th>Penalties</th>
+                    {% comment %} <th>Comments</th> {% endcomment %}
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <!-- Data from DB -->
+            {% for data in decision_read %}
+            <tr>
+                <td>{{ data.id}}</td>
+                <td>{{ data.offender_student}}</td>
+                <td>{{ data.complain}}</td>
+                <td> {% for penalty in data.penalties.all %}{{ penalty }}<br />{% endfor %} </td><br>
+                {% comment %} <td>{{ data.comments}}</td> {% endcomment %}
+                <td><a href="{% url 'decision_read' %}">
+                        <button class="btn btn-primary" type="button" disabled>Detail</button>
+                    </a>
+                </td>
+                <td><a href="{% url 'decision_read' %}">
+                        <button class="btn btn-secondary" type="button" disabled>Update</button>
+                    </a>
+                </td>
+                <td>
+                    <form action="{% url 'decision_delete' data.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger" value="Delete" disabled>
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock body %}

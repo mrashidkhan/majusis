@@ -1,0 +1,16 @@
+{% comment %} <option value="">------Select Offenders-----</option> {% endcomment %}
+{% for offender in offenders %}
+
+{% comment %} <label class="mt-3"><b>Offender {{offender.student_id}} </b></label> {% endcomment %}
+{% comment %} <input type="text" class="form-control" name="Offender{{offender.student_id}}" required />  {% endcomment %}
+
+<label class="mt-3"><b>Penalty for {{offender.student_id}}</b></label>
+<select id="penalty_{{offender.id}}" class="form-control" name="penalty_{{offender.id}}" multiple>
+        
+        {% for penalty in penalties %}
+        <option value="{{penalty.id}}">{{penalty.penalty_name}}</option>
+        {% endfor %}
+</select>
+<br>
+
+{% endfor %}

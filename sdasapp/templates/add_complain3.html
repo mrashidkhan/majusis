@@ -1,0 +1,171 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+
+
+<marquee>
+    Add Complain
+</marquee>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-8 mx-auto bg-light">
+
+
+            <h4 class="alert alert-primary text-center mt-2">Add Complain </h4>
+
+            {% comment %} {%if msg %}
+            <h5 class='mt-2' style="color: red">{{msg}}</h5>
+            {% endif %} {% endcomment %}
+
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 40px;">
+        <div class="col-sm-8 mx-auto bg-light">
+            
+            <form id="complainantform" class="container mt-3" autocomplete="off" action="{% url 'add_complain' %}"
+                ajax_load_complainants="{% url 'ajax_load_complainants' %}"  method="post">
+                {% csrf_token %}
+
+                <label class="mt-3"><b>Complainant Type</b></label>
+                <div>
+                    
+                    <select name="complainant_type" id="complainant_type" class="form-control"
+                        data-complainant-url="{% url 'ajax_load_complainants' %}">
+
+                        <option value="">--Select Complainant Type---</option>
+                        <option value="facultyMember">Faculty Member</option>
+                        <option value="Staff"> Staff </option>
+                        <option value="Student"> Student </option>
+
+                    </select>
+
+                </div>
+                <br>
+                <label class="mt-3"><b>Complainants</b></label>
+                <div>
+                    <select name="complainants" id="complainants" class="form-control required"
+                        data-complainant-url="{% url 'ajax_load_complainants' %}">
+
+                    </select>
+                </div>
+                
+<br>
+                <label class="mt-3"><b>Select Offender Students</b></label>
+                <select class="mt-10" id="offend" name="offenders" size="10" title="offenders[]" multiple="multiple"
+                    class="form-control" required>
+                    {% for data in offenders %}
+                    <option name="{{data.student_id}}" value="{{data.id}}">{{data.student_id}}</option>
+                    {% endfor %}
+<br>
+                </select>
+
+
+                <label class="mt-3"><b>Complain Detail</b></label>
+                <input type="text" class="form-control" name="complain_detail" placeholder="Enter Complain Detail" required>
+
+                <label class="mt-3"><b>Complain Date</b></label>
+                <input type="date" class="form-control" name="complain_date" id="complain_date" placeholder="Enter Complain Date" required>
+
+                <label class="mt-3"><b>Offences</b></label>
+                <select name="offences" multiple="multiple" class="form-control" required>
+                    {% for data in offences %}
+                    <option name="{{data.id}}" value="{{data.id}}">{{data.offence_name}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary">Add Complain</button>
+                    <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+
+                    <a href="{% url 'complain_read' %}">
+                        <button class="btn btn-outline-dark ms-2" type="button">List All Complains</button>
+                    </a>
+
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var offenders = $('#offend').bootstrapDualListbox({
+        nonSelectedListLabel: 'Students',
+        selectedListLabel: 'Offenders',
+        preserveSelectionOnMove: 'moved',
+        moveAllLabel: 'Move all',
+        removeAllLabel: 'Remove all'
+    });
+
+    
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#complainant_type").change(function () {
+        var url = $("#complainantform").attr("ajax_load_complainants");
+        var complainant_type = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'complainant_type': complainant_type
+            },
+            success: function (data) {
+                $("#offend").html(data);
+
+            }
+        });
+    });
+</script>
+
+<!-- <script>
+    $("#complainants").change(function () {
+        var url = $("#complainantform").attr("ajax_load_students");
+        var complainant = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'complainant': complainant
+            },
+            success: function (data) {
+                $("#offend").html(data);
+
+            }
+        });
+    });
+</script> -->
+
+<script>
+    var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("complain_date").setAttribute("max", today);
+</script>
+
+
+
+{% include 'footer.html' %}
+
+{% endblock body %}

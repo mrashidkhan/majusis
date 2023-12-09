@@ -1,0 +1,63 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">Update Term</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        {% comment %} <h2 style="margin-top:12px" align="center">Edit Faculty</h2> {% endcomment %}
+        <hr>
+        <div class="form-group col-md-6">
+            <form method="post" action="{% url 'term_update' term_data.id %}">
+                {% csrf_token %}
+                {% comment %} {{ form.as_p }} {% endcomment %}
+                <label for="termName" size="60" style="margin-top:10px">Term Name</label>
+                <input type="text" class="form-control" name="term_name" id="termName" size="60"
+                    value="{{term_data.term_name}}">
+
+                    {% comment %} value="{{ term_data.term_start_date }}" {% endcomment %}
+                <label for="termStart_date" size="60" style="margin-top:10px">Term Start Date</label>
+                {% comment %} term_data.term_start_date {% endcomment %}
+                <input type="date" class="form-control" name="term_start_date" id="termStart_date" value="{{ term_data.term_start_date }}" >
+                <br>
+                <h1> {{ term_data.term_name }}</h1>
+                <h1> {{ term_data.term_start_date }}</h1>
+                <h1> {{ term_data.term_end_date }}</h1>
+                <h1> {{ term_data.comments }}</h1>
+
+                <label for="termEnd_date" size="60" style="margin-top:10px">Term End Date</label>
+                <input type="date" class="form-control" name="term_end_date" id="termEnd_date" value="{{ term_data.term_end_date }}">
+                <br>
+
+                <label for="termComments" size="60" style="margin-top:10px">Comments</label>
+                <input type="text" class="form-control" name="comments" id="termComments" size="60"
+                    value="{{term_data.comments}}">
+                <br>
+
+                <button type="submit" class="btn btn-primary" style="margin-top:12px">Submit</button>
+
+
+            </form>
+        </div>
+        <div class="form-group col-md-6">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

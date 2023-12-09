@@ -1,0 +1,70 @@
+{% load static %}
+
+{% block body %}
+{% include 'navigation.html' %}
+<script>
+    label {
+        display: block;
+        font: 1 rem 'Fira Sans',
+        sans - serif;
+    }
+
+    input,
+    label {
+        margin: .4 rem 0;
+    }
+</script>
+<hr>
+
+
+<marquee>
+    Student Detail
+</marquee>
+
+<div class="container card p-3 mt-2 border-dark mx-auto" style="width: 45rem; margin: 10px">
+    <div class="row mt-3">
+        <div class="col-sm-12 mx-auto bg-light">
+
+            <h4 class="alert alert-primary text-center mt-2">Meeting Detail</h4>
+            <hr>
+            {%if msg %}
+            <h5 class='mt-2' style="color: red">{{msg}}</h5>
+            {% endif %}
+
+            <form method="POST" action="{% url 'meeting_read' %}">
+                {% csrf_token %}
+
+                <label for="meeting_id" size="60" style="margin-top:10px">Meeting Date</label>
+                <input type="text" class="form-control" name="meeting_date" id="meeting_date" size="60"
+                    value="{{ meeting_data.meeting_date }}" disabled>
+
+                <label for="first_name_id" size="60" style="margin-top:10px">Meeting Location</label>
+                <input type="text" class="form-control" name="meeting_location" idmeeting_name_id" size="60"
+                    value="{{ meeting_data.meeting_location }}" disabled>
+
+                <label for="chair_by" size="60" style="margin-top:10px">Chair By</label>
+                <input type="text" class="form-control" name="chair_by" id="chair_by" size="60"
+                    value="{{meeting_data.chair_by}}" disabled>
+
+                <label for="comments" size="60" style="margin-top:10px">comments</label>
+                <input type="text" class="form-control" name="comments" id="comments" size="60"
+                    value="{{meeting_data.comments}}" disabled>
+
+                
+
+                <button type="submit" class="btn btn-primary" style="margin-top:12px">Submit</button>
+
+
+            </form>
+
+            
+
+
+
+
+
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock body %}

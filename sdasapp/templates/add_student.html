@@ -1,0 +1,155 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<script>
+    label {
+        display: block;
+        font: 1 rem 'Fira Sans',
+        sans - serif;
+    }
+
+    input,
+    label {
+        margin: .4 rem 0;
+    }
+</script>
+<hr>
+
+<marquee>
+    Add Student
+</marquee>
+
+<div class="container card p-3 mt-2 border-dark mx-auto" style="width: 45rem; margin: 10px">
+    <div class="row mt-3">
+        <div class="col-sm-12 mx-auto bg-light">
+  
+            
+            {% comment %} <h4 class="alert alert-primary mt-2 text-center">Add Student </h4> {% endcomment %}
+            <h4 class="alert alert-primary text-center mt-2">Add Student</h4>
+            {%if msg %}
+                <h5 class='mt-2' style="color: red" >{{msg}}</h5>
+            {% endif %}
+  
+            <form class="container mt-3" autocomplete="off" action="{% url 'add_student' %}" method="post">
+                {% csrf_token %}
+
+                <label class="mt-3"><b>Term</b></label>
+                
+                <select class="form-control" name="term" required>
+                    {% comment %} <option value="">---Select Term---</option> {% endcomment %}
+                    {% for term in terms %}
+                        <option value="{{term.id}}">{{term.term_name}}</option>
+                    {% endfor %}
+                </select>
+                
+
+                <label class="mt-3"><b>Program</b></label> 
+                <select class="form-control" name="program" required>
+                    {% comment %} <option value="">---Select Program---</option> {% endcomment %}
+                    {% for program in programs %}
+                        <option value="{{program.id}}">{{program.program_name}}</option>
+                    {% endfor %}
+                </select>
+                
+                <label class="mt-3"><b>Student Roll Number</b></label>
+                <input type="tel" min="1" max="9999" pattern="[0-9]{4}" class="form-control" name="rollnumber" placeholder="Enter Student Roll number in given format" required>
+                <small>Format: 0001 or 0023 or 0865 or 3782 </small><br>
+
+                <label class="mt-3"><b>Student First Name</b></label>
+                <input type="text" class="form-control" name="first_name" placeholder="Enter First Name" onkeyup="
+                var start = this.selectionStart;
+                var end = this.selectionEnd;
+                this.value = this.value.toUpperCase();
+                this.setSelectionRange(start, end);
+              " style="text-transform:uppercase" required />  
+
+                <label class="mt-3"><b>Student Last Name</b></label>
+                <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" style="text-transform:uppercase" 
+                onkeyup="
+                var start = this.selectionStart;
+                var end = this.selectionEnd;
+                this.value = this.value.toUpperCase();
+                this.setSelectionRange(start, end);
+              " style="text-transform:uppercase" />  
+
+                <label class="mt-3"><b>Email ID</b></label>
+                <input type="email" class="form-control" name="email_id" placeholder="Enter Email ID" style="text-transform:lowercase" 
+                onkeyup="
+                var start = this.selectionStart;
+                var end = this.selectionEnd;
+                this.value = this.value.toLowerCase();
+                this.setSelectionRange(start, end);
+              " style="text-transform:uppercase" required />  
+  
+                <label class="mt-3"><b>Mobile Number</b></label>
+                <input type="text" class="form-control" name="contact_no" placeholder="Enter Mobile No in given format" pattern="[03]{2}[0-4]{2}-[0-9]{7}" required />
+                <small>Format: 0333-1234567 or 0300-1234567 or 0321-1234567 or others as given pattern</small><br>
+
+                
+                <label class="mt-3" for="gender"><b>Gender</b></label>
+                <select class="form-control" name="gender">
+                  
+                  <option value="MALE">MALE</option>
+                  <option value="FEMALE">FEMALE</option>
+                  
+                </select>
+                               
+
+                {% comment %} <button type="submit" class="btn btn-primary mt-4">Add Student</button> {% endcomment %}
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary">Add Student</button>
+                    <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+                    {% comment %} <button href="/student_read" type="button" class="btn btn-outline-dark ms-2">List All Students</button>  {% endcomment %}
+                    <a href="{% url 'student_read' %}">
+                        <button class="btn btn-outline-dark ms-2" type="button">List All Student</button>
+                    </a>
+                    
+                </div>
+                
+            </form>
+            <div class="mt-5">
+                
+                {% comment %} <button href="{% url 'student_read' %}" class="btn btn-outline-dark ms-2">List All Students</button> {% endcomment %}
+            </div>
+            {% comment %} {%if msg %}
+                <h4 class='mt-2'>{{msg}}</h4>
+            {% endif %} {% endcomment %}
+            
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+{% endblock body %}
+
+{% comment %} {%extends 'base.html' %} {% endcomment %}
+
+{% comment %} {% block content %}  {% endcomment %}
+
+{% comment %} {% block body %}
+{% include 'navigation.html' %}
+
+<div class="container card p-3 mt-5 border-dark" styles="width: 95%">
+    <h5 class="text-center">Add Student</h5>
+    <hr>
+    <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="mt-5">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+        
+        <div>   
+        </div>
+    
+    </form>
+</div> <button href="{% url 'student_read' %}" class="btn btn-outline-dark ms-2 mt-3">List All Students</button>
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %} {% endcomment %}

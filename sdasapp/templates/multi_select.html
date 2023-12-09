@@ -1,0 +1,110 @@
+{% load static %}
+
+{% block body %}
+
+{% comment %} {% include 'navigation.html' %} {% endcomment %}
+
+
+<script>
+    label {
+        display: block;
+        font: 1 rem 'Fira Sans',
+        sans - serif;
+    }
+
+    input,
+    label {
+        margin: .4 rem 0;
+    }
+</script>
+<hr>
+
+
+<head>
+
+
+    <title>Student Discipline Management System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> -->
+    <style>
+        .nav-link {
+            color: white;
+            margin-right: 30px;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            font-weight: bold;
+            background-color: red;
+            border-radius: 10px;
+        }
+
+        .navbar-brand:hover {
+            color: red !important;
+            font-weight: bold;
+            /* background-color: red; */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<marquee>
+    Add Faculty
+</marquee>{% load static %}
+
+<div class="related-widget-wrapper" data-model-ref="permission">
+
+
+
+
+    <div class="selector">
+        <div class="selector-available">
+            <h2>Available user permissions <span class="help help-tooltip help-icon"
+                    title="This is the list of available user permissions. You may choose some by selecting them in the box below and then clicking the &quot;Choose&quot; arrow between the two boxes."></span>
+            </h2>
+            <p id="id_user_permissions_filter" class="selector-filter">
+                <label for="id_user_permissions_input"><span class="help-tooltip search-label-icon"
+                        title="Type into this box to filter down the list of available user permissions."></span></label>
+                <input type="text" placeholder="Filter" id="id_user_permissions_input"></p><select
+                name="user_permissions_old" id="id_user_permissions_from" multiple="" class="filtered"
+                data-field-name="user permissions" data-is-stacked="0">
+                <option value="1" title="admin | log entry | Can add log entry">admin | log entry | Can add log entry
+                </option>
+                <option value="2" title="admin | log entry | Can change log entry">admin | log entry | Can change log
+                    entry</option>
+                <option value="3" title="admin | log entry | Can delete log entry">admin | log entry | Can delete log
+                    entry</option>
+                <option value="4" title="admin | log entry | Can view log entry">admin | log entry | Can view log entry
+                </option>
+
+            </select><a title="Click to choose all user permissions at once." href="#"
+                id="id_user_permissions_add_all_link" class="selector-chooseall active">Choose all</a>
+        </div>
+        <ul class="selector-chooser">
+            <li><a title="Choose" href="#" id="id_user_permissions_add_link" class="selector-add">Choose</a></li>
+            <li><a title="Remove" href="#" id="id_user_permissions_remove_link" class="selector-remove">Remove</a></li>
+        </ul>
+        <div class="selector-chosen">
+            <h2>Chosen user permissions <span class="help help-tooltip help-icon"
+                    title="This is the list of chosen user permissions. You may remove some by selecting them in the box below and then clicking the &quot;Remove&quot; arrow between the two boxes."></span>
+            </h2><select id="id_user_permissions_to" multiple="multiple" size="0" name="user_permissions"
+                class="filtered" style="height: 267.8px;"></select><a
+                title="Click to remove all chosen user permissions at once." href="#"
+                id="id_user_permissions_remove_all_link" class="selector-clearall">Remove all</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">List of faculty</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        <h2 style="margin-top:20px" align="center">Edit faculty</h2>
+        <hr>
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group col-md-6">
+                <label for="facultyName">Faculty Member Name</label>
+                <input type="text" class="form-control" name="faculty_name" id="facultyName"
+                    value="{{facultymember_data.facultymember_name}}" required placeholder="Enter Faculty Name">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+
+
+
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

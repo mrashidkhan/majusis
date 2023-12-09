@@ -1,0 +1,163 @@
+{% comment %} {%extends 'base.html' %} {% endcomment %}
+{% load static %}
+
+
+
+{% block body %}
+
+{% comment %} {% include 'navigation.html' %} {% endcomment %}
+
+{% comment %} <script>
+    label {
+        display: block;
+        font: 1 rem 'Fira Sans',
+        sans - serif;
+    }
+
+    input,
+    label {
+        margin: .4 rem 0;
+    }
+</script>
+<hr>
+
+<marquee>
+    Add Complain
+</marquee>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-8 mx-auto bg-light">
+
+
+            <h3 class="mt-2">Add Complain </h3>
+            <br>
+            {%if msg %}
+            <h5 class='mt-2' style="color: red">{{msg}}</h5>
+            {% endif %}
+
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 40px;">
+        <div class="col-sm-8 mx-auto bg-light">
+
+            <form id="offendersform" class="container mt-3" autocomplete="off" action="{% url 'add_complain' %}"
+                method="post">
+                {% csrf_token %}
+
+                <label class="mt-3"><b>Complainant</b></label>
+                <select name="complainant" class="form-control">
+                    {% for compl in complainant %}
+                    <option value="{{compl}}">{{compl}}</option>
+
+
+                    {% endfor %}
+                </select>
+
+                <label class="mt-3"><b>Offenders</b></label>
+
+                <select size="10" name="offenders[]" title="offenders[]" multiple="multiple" class="form-control">
+
+                    {% for data in offenders %}
+
+                    <option value="{{data}}">{{data}}</option>
+                    {% endfor %}
+                    <br>
+                </select>
+
+                <label class="mt-3"><b>Complain Detail</b></label>
+                <input type="text" class="form-control" name="complain_detail" placeholder="Enter Complain Detail">
+
+                <label class="mt-3"><b>Complain Date</b></label>
+                <input type="date" class="form-control" name="complain_date" placeholder="Enter Complain Date">
+
+
+
+
+                <label class="mt-3"><b>Offences</b></label>
+                <select name="offence" multiple="multiple" class="form-control">
+                    {% for data in offences %}
+                    <option value="{{data.id}}">{{data.offence_name}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary">Add Complain</button>
+                    <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+
+                    <a href="{% url 'complain_read' %}">
+                        <button class="btn btn-outline-dark ms-2" type="button">List All Complains</button>
+                    </a>
+
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+</div> {% endcomment %}
+
+<script>
+    var offenders = $('select[name="offenders[]"]').bootstrapDualListbox({
+        nonSelectedListLabel: 'Students',
+        selectedListLabel: 'Offenders',
+        preserveSelectionOnMove: 'moved',
+        moveAllLabel: 'Move all',
+        removeAllLabel: 'Remove all'
+    });
+</script>
+
+{% include 'navigation.html' %}
+
+<script>
+    label {
+        display: block;
+        font: 1 rem 'Fira Sans',
+        sans - serif;
+    }
+
+    input,
+    label {
+        margin: .4 rem 0;
+    }
+</script>
+<hr>
+
+<marquee>
+    Add Complain
+</marquee>
+
+<div class="container card p-3 mt-5 border-dark" styles="width: 95%">
+    <div class="row">
+        <div class="col-sm-6 mx-auto bg-light">
+            <h4 class="alert alert-primary text-center mt-2">Add Complain</h4>
+            <hr>
+            {%if msg %}
+            <h5 class='mt-2' style="color: red">{{msg}}</h5>
+            {% endif %}
+            <div class="form-group">
+                <form method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="mt-5">
+                        <button type="submit" class="btn btn-primary">Add Complain</button>
+                        <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+                        <a href="{% url 'complain_read' %}">
+                            <button class="btn btn-outline-dark ms-2" type="button">List All
+                                Complains</button>
+                        </a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

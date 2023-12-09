@@ -1,0 +1,41 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+  Live, Learn & Be Inspired
+</marquee>
+
+<div class="container card p-3 mt-5 border-dark" styles="width: 95%">
+    <a href="{% url 'add_charge' %}" class="btn btn-outline-primary mb-3">Add Charge</a>
+    <h5 class="card p-2 text-center mb-3">List of Charges</h5> 
+        <table class="table table-boardered text-center">
+            <thead class="table-secondary">
+                {% comment %} complain_detail = models.CharField(max_length=255)
+                complain_date = models.DateTimeField()
+                complainant = models.ForeignKey(Student, on_delete=models.CASCADE)
+                register_by = models.ForeignKey(User, on_delete=models.CASCADE ) {% endcomment %}
+                <tr>
+                    <th>Charge name</th>
+                    <th>Charge detail:</th>
+                                        
+                </tr>
+            </thead>
+            <!-- Data from DB -->
+            {% for data in charge_read %}
+                <tr>
+                    <td>{{ data.charge_name}}</td>
+                    <td>{{ data.charge_detail}}</td>
+                                     
+                </tr>
+            {% endfor %}
+        </table>
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

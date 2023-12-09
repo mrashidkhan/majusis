@@ -1,0 +1,74 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+<h5 class="card p-2 text-center mb-4">List of Faculty Member</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+
+
+        <table class="table table-boardered">
+            <thead class="table-secondary">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mobile</th>
+                    <th>Gender</th> 
+                    <th>Designation</th>
+                    <th>Department</th>
+                    
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <!-- Data from DB -->
+            {% for data in facultymember_read %}
+            <tr>
+                <td>{{ data.first_name}}</td>
+                <td>{{ data.last_name}}</td>
+                <td>{{ data.contact_no }}</td>
+                <td>{{ data.gender }}</td> 
+                <td>{{ data.designation }}</td>
+                <td> {% for dept in data.depts.all %}{{ dept }}<br />{% endfor %} </td><br>
+                
+                <td>
+                    <a href="{% url 'facultymember_detail' data.id %}">
+                        <button class="btn btn-primary" type="button">Detail</button>
+                    </a>
+                </td>
+                <td>
+                    <form action="{% url 'facultymember_edit' data.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-secondary" value="Update">
+                    </form>
+                </td>
+
+                <td>
+                    <form action="{% url 'facultymember_delete' data.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </form>
+                </td>
+
+                <br>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

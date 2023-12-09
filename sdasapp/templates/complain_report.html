@@ -1,0 +1,46 @@
+<html>
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Complaint Report</h1>
+    <table>
+        <tr>
+            <th>S.No </th>
+            <th>Detail</th>
+            <th>Date</th>
+            <th>Complainant</th>
+            <th>Offence</th>
+            <th>Offender</th>
+        </tr>
+        {% for data in complains %}
+        <tr>
+            <td>{{ data.id }} </td>
+            <td>{{ data.complain_detail}}</td>
+            <td>{{ data.complain_date}}</td>
+            <td>{{ data.complainant}}</td>
+            <td> 
+                {% for offence in data.offences.all %}
+                    {{ offence }}<br>
+                {% endfor %}
+            </td>
+            <td> 
+                {% for offender in data.offenders.all %}
+                    {{ offender }}<br>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

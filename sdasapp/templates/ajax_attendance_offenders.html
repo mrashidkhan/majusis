@@ -1,0 +1,6 @@
+{% comment %} <option value="">------Select Offender-----</option> {% endcomment %}
+{% for offender in offenders %}
+   
+        <option value= "{{offender.id}}">{{offender.student_id }} {{offender.first_name }} {{offender.last_name }}</option>
+    
+{% endfor %}

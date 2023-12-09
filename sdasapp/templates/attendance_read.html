@@ -1,0 +1,65 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+
+    <h5 class="card p-2 text-center mb-3">List of Attendance</h5>
+
+    <div class="container card  border-dark ">
+
+        <div class="row">
+            <table class="table table-boardered text-center">
+                <thead class="table-secondary">
+
+                    <tr>
+                        {% comment %} <th>Attendance ID</th> {% endcomment %}
+
+                        <th>Meeting</th>
+                        <th>Complain</th>
+                        <th>Attendee</th>
+                        <th>Attendee Type</th>
+                        <th>Attendance</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                {% for data in attendance_read %}
+                <tr>
+                    <td>{{ data.meeting}}</td>
+                    <td>{{ data.complain}}</td>
+                    <td>{{ data.attendee}}</td>
+                    <td>{{ data.comments}}</td>
+                    <td>{{ data.attendance_status}}</td>
+                    <td><a href="{% url 'attendance_read' %}">
+                            <button class="btn btn-primary" type="button" disabled>Detail</button>
+                        </a>
+                    </td>
+                    <td><a href="{% url 'attendance_read' %}" >
+                            <button class="btn btn-secondary" type="button" disabled>Update</button>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{% url 'attendance_delete' data.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Delete" disabled >
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+    {% endblock body %}

@@ -1,0 +1,214 @@
+<html>
+
+<head>
+
+    {% load static %}
+    <title>Student Discipline Management System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> -->
+    <style>
+        .nav-link {
+            color: white;
+            margin-right: 30px;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            font-weight: bold;
+            background-color: red;
+            border-radius: 10px;
+        }
+
+        .navbar-brand:hover {
+            color: red !important;
+            font-weight: bold;
+            /* background-color: red; */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 mt-3">
+                <a href="{% url 'index' %}">
+                    <img alt="MAJU USNIVERSITY" src="{% static 'maju_icon.png' %}">
+                </a>
+            </div>
+
+            {% comment %} <a href="https://www.qries.com/">
+                <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width=150" height="70">
+            </a> {% endcomment %}
+
+
+            <div class="col-sm-6 mt-5 text-center">
+                <span style="font-weight:bold; font-size:30px">
+                    <span style="color:red">MAJU Student Discipline</span><br>
+                    <span style="color:blue">Managment System</span>
+
+                </span>
+            </div>
+
+
+            <div class="col-sm-3 mt-5">
+                <span style="font-weight:bold; font-size: 30px">
+                    <span><a class=" facebook hasTooltip"
+                            href="https://www.facebook.com/mohammadalijinnahuniversityofficial/" target="_blank"
+                            rel="noopener"><i class="fa fa-facebook pl-1"></i></a>
+                    </span>
+
+                    <span><a class=" twitter hasTooltip"
+                            href="https://twitter.com/MAJUOFFICIAL?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                            target="_blank" rel="noopener"><i class="fa fa-twitter pl-1"></i></a>
+                    </span>
+
+                    <span><a class="linkedin hasTooltip" href="https://www.linkedin.com/school/majuofficial"
+                            target="_blank" rel="noopener"><i class="fa fa-linkedin pl-1"></i></a>
+                    </span>
+
+                    <span><a class="instagram-plus hasTooltip" href="https://www.instagram.com/majuofficial/"
+                            target="_blank" rel="noopener"><i class="fa fa-instagram pl-1"></i></a>
+                    </span>
+
+                    <span><a class="youtube hasTooltip" href="https://www.youtube.com/c/MAJUOfficial" target="_blank"
+                            rel="noopener"><i class="fa fa-youtube pl-1"></i></a>
+                    </span>
+
+                </span>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <nav class="navbar navbar-expand-sm mt-3" style="background-color:blue">
+        <a href="{% url 'index' %}" class="navbar-brand text-white pl-2 " style="font-size: 25px">
+            Live, Learn & Be Inspired </a>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}" style="margin-left:150px"><i class="fa fa-home mr-1"
+                        aria-hidden="true"></i> Home</a>
+            </li>
+
+
+
+            {% if user.is_authenticated %}
+
+
+
+
+            {% comment %} <li class="nav-item">
+                <a class="nav-link" href="{% url 'register_complain' %}"><i class="fa fa-sign-out"
+                        aria-hidden="true"></i>Register Complain</a>
+            </li> {% endcomment %}
+
+
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-plus mr-1" aria-hidden="true"></i>Complain info
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="{% url 'add_student' %}">Add Student</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'student_read' %}">Student List</a></li> {% endcomment %}
+
+                    <li><a class="dropdown-item" href="{% url 'add_complain' %}">Add Complain</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'complain_read' %}">Complain List</a></li> {% endcomment %}
+
+                    <li><a class="dropdown-item" href="{% url 'add_meeting' %}">Add Meeting</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'meeting_read' %}">Meeting List</a></li> {% endcomment %}
+
+                    <li><a class="dropdown-item" href="{% url 'add_attendance' %}">Add Attendance</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'attendance_read' %}">Attendance List</a></li> {% endcomment %}
+
+                    <li><a class="dropdown-item" href="{% url 'add_decision' %}">Add Decision </a></li>
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'decision_read' %}">Decision List </a></li> {% endcomment %}
+
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-plus" aria-hidden="true"></i>Admin Task
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="{% url 'add_faculty' %}">Add Faculty</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'faculty_read' %}">Faculty List</a></li> {% endcomment %}
+                    <li><a class="dropdown-item" href="{% url 'add_dept' %}">Add Department</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'department_read' %}">Department List</a></li> {% endcomment %}
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'add_program_type' %}">Add Program Type</a>
+                    </li> {% endcomment %}
+                    <li><a class="dropdown-item" href="{% url 'add_program' %}">Add Program</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'program_read' %}">Program List</a></li> {% endcomment %}
+
+                    <li><a class="dropdown-item" href="{% url 'add_offence' %}">Add Offence </a></li>
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'offence_read' %}">Offence List</a></li> {% endcomment %}
+
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'add_offence' %}">Add Offence </a></li> {% endcomment %}
+                    {% comment %} <li><a class="dropdown-item" href="{% url 'offence_read' %}">Offence List</a></li> {% endcomment %}
+                    <li><a class="dropdown-item" href="{% url 'add_penalty' %}">Add Penalty </a></li>
+                </ul>
+            </div>
+
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="/user_signout"><i class="fa fa-sign-out" aria-hidden="true"></i> Signout</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'change_password' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                    Change Password</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Welcome, {{user.first_name}} {{user.last_name}}</a>
+            </li>
+
+            {% else %}
+
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_signup' %}"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                    Register User</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_signin' %}"><i class="fa fa-user  mr-1"
+                        aria-hidden="true"></i>Login User</a>
+            </li>
+
+            {% endif %}
+
+        </ul>
+    </nav>
+
+    {% if messages %}
+            {% for message in messages%}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+    {% endif %}
+</body>
+
+</html>

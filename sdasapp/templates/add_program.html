@@ -1,0 +1,115 @@
+{% load static %}
+
+
+{% comment %} {% block body %}
+
+{% include 'navigation.html' %}
+
+<script>
+    label {
+        display: block;
+        font: 1 rem 'Fira Sans',
+        sans - serif;
+    }
+
+    input,
+    label {
+        margin: .4 rem 0;
+    }
+</script>
+<hr>
+
+<marquee>
+    Add Program
+</marquee>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 mx-auto bg-light">
+
+
+            <h3 class="mt-2">Add Program </h3>
+            {%if msg %}
+            <h5 class='mt-2' style="color: red">{{msg}}</h5>
+            {% endif %}
+            <form class="container mt-3" action="{% url 'add_program' %}" method="post">
+                {% csrf_token %}
+                <label class="mt-3"><b>Program Name</b></label>
+                <input type="text" class="form-control" name="program_name" placeholder="Enter Program Name">
+
+
+                <label class="mt-3"><b>Program Type ID</b></label>
+                <input type="text" class="form-control" name="program_type" placeholder="Select Program Type">
+
+                <label class="mt-3"><b>Department</b></label>
+                <select name="dept">
+                    {% for dept in depts %}
+                    <option value="{{dept.id}}">{{dept.depart_name}}</option>
+                    {% endfor %}
+                </select>
+
+
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary">Add Program</button>
+                    <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+
+                    <a href="{% url 'program_read' %}">
+                        <button class="btn btn-outline-dark ms-2" type="button">List All Programs</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %} {% endcomment %}
+
+{% block body %}
+{% include 'navigation.html' %}
+<script>
+    label {
+        display: block;
+        font: 1 rem 'Fira Sans',
+        sans - serif;
+    }
+
+    input,
+    label {
+        margin: .4 rem 0;
+    }
+</script>
+<hr>
+
+
+
+<marquee>
+    Add Program
+</marquee>
+
+<div class="container card p-3 mt-2 border-dark mx-auto" style="width: 45rem; margin: 10px">
+    <div class="row mt-3">
+        <div class="col-sm-12 mx-auto bg-light">
+            {% comment %} <h5 class="text-center">Add Program</h5> {% endcomment %}
+            <h4 class="alert alert-primary text-center mt-2">Add Program</h4>
+            <hr>
+            {%if msg %}
+            <h5 class='mt-2' style="color: red">{{msg}}</h5>
+            {% endif %}
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary">Add Program</button>
+                    <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+
+                    <a href="{% url 'program_read' %}">
+                        <button class="btn btn-outline-dark ms-2" type="button">List All Programs</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock body %}

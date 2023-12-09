@@ -1,0 +1,86 @@
+{% load static %}
+
+{% block body %}
+{% include 'navigation.html' %}
+<script>
+    label {
+        display: block;
+        font: 1 rem 'Fira Sans',
+        sans - serif;
+    }
+
+    input,
+    label {
+        margin: .4 rem 0;
+    }
+</script>
+<hr>
+
+
+<marquee>
+    Student Detail
+</marquee>
+
+<div class="container card p-3 mt-2 border-dark mx-auto" style="width: 45rem; margin: 10px">
+    <div class="row mt-3">
+        <div class="col-sm-12 mx-auto bg-light">
+
+            <h4 class="alert alert-primary text-center mt-2">Student Detail</h4>
+            <hr>
+            {%if msg %}
+            <h5 class='mt-2' style="color: red">{{msg}}</h5>
+            {% endif %}
+
+            <form method="POST" action="{% url 'student_read' %}">
+                {% csrf_token %}
+
+                <label for="student_id" size="60" style="margin-top:10px">Student ID</label>
+                <input type="text" class="form-control" name="student_id" id="student_id" size="60"
+                    value="{{ student_data.student_id }}" disabled>
+
+                <label for="first_name_id" size="60" style="margin-top:10px">First Name</label>
+                <input type="text" class="form-control" name="student_id" id="first_name_id" size="60"
+                    value="{{ student_data.first_name }}" disabled>
+
+                <label for="last_nameid" size="60" style="margin-top:10px">Last Name</label>
+                <input type="text" class="form-control" name="last_name" id="last_nameid" size="60"
+                    value="{{student_data.last_name}}" disabled>
+
+                <label for="contact_no_id" size="60" style="margin-top:10px">Mobile Number</label>
+                <input type="text" class="form-control" name="email_id" id="contact_no_id" size="60"
+                    value="{{student_data.contact_no}}" disabled>
+
+                <label for="email_id_id" size="60" style="margin-top:10px">Email</label>
+                <input type="text" class="form-control" name="email_id" id="email_id_id" size="60"
+                    value="{{student_data.email_id}}" disabled>
+
+                <label for="gender_id" size="60" style="margin-top:10px">Gender</label>
+                <input type="text" class="form-control" name="gender" id="gender_id" size="60"
+                    value="{{student_data.gender}}" disabled>
+
+                <label for="term_id" size="60" style="margin-top:10px">Term</label>
+                <input type="text" class="form-control" name="term" id="term_id" size="60" value="{{student_data.term}}"
+                    disabled>
+
+                <label for="program_id" size="60" style="margin-top:10px">Program</label>
+                <input type="text" class="form-control" name="program" id="program_id" size="60" value="{{student_data.program}}"
+                    disabled>
+
+                </br>
+
+                <button type="submit" class="btn btn-primary" style="margin-top:12px">Submit</button>
+
+
+            </form>
+
+            
+
+
+
+
+
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock body %}

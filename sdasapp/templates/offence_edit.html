@@ -1,0 +1,46 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">Update Offence</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        {% comment %} <h2 style="margin-top:20px" align="center">Edit Offence</h2>
+        <hr> {% endcomment %}
+        <form method="post" action="{% url 'offence_update' offence_data.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+                <div class="form-group col-md-6">
+                    <label for="offenceName">Offence Name</label>
+                    <input type="text" class="form-control" name="offence_name" id="offenceName" size="100" value="{{offence_data.offence_name}}"
+                        required placeholder="Enter Offence Name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="comments">Offence Comments</label>
+                    <input type="text" class="form-control" name="comments" id="comments" size="100"
+                        value="{{offence_data.offence_comments}}" required placeholder="Offence Comments">
+                </div>
+            
+
+            <button type="submit" class="btn btn-primary ml-3">Submit</button>
+        </form>
+
+    </div>
+
+    
+
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

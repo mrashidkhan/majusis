@@ -1,0 +1,101 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">Term</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+
+        <hr>
+        <div class="form-group col-md-6">
+            <form method="POST" action="{% url 'term_update' term_data.id %}">
+                {% csrf_token %}
+
+
+                <label for="termName" size="60" style="margin-top:10px">Term Name</label>
+                <input type="text" class="form-control" name="term_name" id="termName" size="60" value="{{term_data.term_name}}" >
+                    {% comment %} <h1> {{term_data.term_name}} </h1> {% endcomment %}
+                <label for="term_start_dateid" size="60" style="margin-top:10px">Term Start Date</label>
+                <input type="text" class="form-control" name="term_start_date" id="term_start_dateid" size="60" value="{{ term_start_date }}">
+                {% comment %} <h1> {{term_start_date}} </h1> {% endcomment %}
+                <label for="term_end_dateid" size="60" style="margin-top:10px">Term End Date</label>
+                <input type="text" class="form-control" name="term_end_date" id="term_end_dateid" size="60" value="{{ term_end_date }}" >
+                {% comment %} <h1> {{term_end_date}} </h1> {% endcomment %}
+
+                {% comment %} <label for="comments" size="60" style="margin-top:10px">Comments</label>
+                <input type="text" class="form-control" name="comments" id="comments" size="60" value="{{ term_data.comments }}" > {% endcomment %}
+                
+                <label for="termComments" size="60" style="margin-top:10px">Comments</label>
+                <input type="text" class="form-control" name="comments" id="termComments" size="60"
+                    value="{{term_comments}}">
+                    {% comment %} <h1> {{term_comments}} </h1> {% endcomment %}
+                <br>
+
+                <button type="submit" class="btn btn-primary" style="margin-top:12px">Update</button>
+
+
+            </form>
+        </div>
+        <div class="form-group col-md-6">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+{% comment %} <script>
+    $(document).ready(function(){
+    $('#term_start_dateid').datepicker({
+        dateForm: "dd-mm-yy",
+        changeMonth: true,
+        changeYear: true
+    });
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+    $('#term_end_dateid').datepicker({
+        dateForm: "dd-mm-yy",
+        changeMonth: true,
+        changeYear: true
+    });
+    })
+</script> {% endcomment %}
+<script>
+    $(document).ready(function(){
+    $('#term_start_dateid').datepicker({
+        dateFormat: "dd-mm-yy",
+        changeMonth: true,
+        changeYear: true
+    });
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+    $('#term_end_dateid').datepicker({
+        dateFormat: "dd-mm-yy",
+        changeMonth: true,
+        changeYear: true
+    });
+    })
+</script>
+
+{% include 'footer.html' %}
+{% endblock body %}

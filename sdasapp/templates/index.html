@@ -1,0 +1,22 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<div class="container-fluid" style="margin-top:1%">
+    <img src="{% static 'majufron.jpg' %}" style="height:450px;width:100%">
+</div>
+<br>
+<form class="ml-3" method="get" action="{% url 'search' %}">
+    <input type="text" name="q" placeholder="Search Offenders">
+    <input type="submit" value="Go">
+</form>
+
+{% include 'footer.html' %}
+{% endblock %}

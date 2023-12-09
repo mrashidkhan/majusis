@@ -1,0 +1,89 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">Update Program</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        {% comment %} <h2 style="margin-top:12px" align="center">Edit Faculty</h2> {% endcomment %}
+        <hr>
+        <div class="form-group col-md-6">
+            <form method="post" action="{% url 'program_update' program_data.id %}">
+                {% csrf_token %}
+
+
+                <label for="programName" size="60" style="margin-top:10px">program Name</label>
+                <input type="text" class="form-control" name="program_name" id="programName" size="60"
+                    value="{{program_data.program_name}}">
+
+                <label for="program_code" size="60" style="margin-top:10px">Program Code</label>
+                <input type="text" class="form-control" name="program_code" id="dept" size="60" value="{{program_data.program_code}}">
+
+                <label for="program_type" size="60" style="margin-top:10px">Program Type</label>
+                <input type="text" class="form-control" name="program_type" id="dept" size="60" value="{{program_data.program_type}}">
+
+                {% comment %} <label for="dept" size="60" style="margin-top:10px">Department</label>
+                <input type="text" class="form-control" name="dept" id="dept" size="60" value="{{program_data.dept}}"> {% endcomment %}
+                
+                <label class="mt-3"><b>Department</b></label>
+                <select class="form-control" name="dept">
+                    {% for dept in depts %}
+                        {% if dept == program_data.dept %}
+                            <option value="{{dept.id}}" selected>{{dept.dept_name}} </option>
+                        {% else %}
+                            <option value="{{dept.id}}">{{dept.dept_name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <br> 
+                {% comment %} <label for="program_term" size="60" style="margin-top:10px">Program Term</label>
+                <input type="text" class="form-control" name="program_term" id="term" size="60" value="{{program_data.term}}"> {% endcomment %}
+
+                <label class="mt-3"><b>Program Term</b></label>
+                <select class="form-control" name="term">
+                    {% for term in terms %}
+                        {% if term == program_data.term %}
+                            <option value="{{term.id}}" selected>{{term.term_name}} </option>
+                        {% else %}
+                            <option value="{{term.id}}">{{term.term_name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <br> 
+
+                <br>
+                <!-- <label class="mt-3"><b>Program Type</b></label>
+                <select name="faculty">
+                    {% for faculty in facultys %}
+                    <option value="{{faculty.id}}">{{faculty.faculty_name}}</option>
+                    {% endfor %}
+                </select>
+                <br> -->
+
+                <button type="submit" class="btn btn-primary" style="margin-top:12px">Submit</button>
+
+
+            </form>
+        </div>
+        <div class="form-group col-md-6">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

@@ -1,0 +1,144 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+{% comment %} <div class="container card p-3 mt-5 border-dark" styles="width: 95%">
+    <a href="{% url 'add_complain' %}" class="btn btn-outline-primary mb-3">Add Complain</a>
+    <h5 class="card p-2 text-center mb-3">List of Complains</h5> {% endcomment %}
+    <h5 class="card p-2 text-center mb-4">List of Complaints</h5>
+
+    <div class="container card  border-dark ">
+
+        <div class="row">
+            <table class="table table-boardered">
+                <thead class="table-secondary">
+
+                    <tr>
+                        <th>S.No </th>
+                        <th>Detail</th>
+                        <th>Date</th>
+                        {% comment %} <th>Incident Date</th> {% endcomment %}
+                        <th>Complainant</th>
+                        <th>Type</th>
+                        <th>Offence</th>
+                        <th>Offender</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <!-- Data from DB -->
+                {% for data in complain_read %}
+                <tr>
+                    <td>{{ data.id }} </td>
+                    <td>{{ data.complain_detail}}</td>
+                    <td>{{ data.complain_date}}</td>
+                    {% comment %} <td>{{ data.incident_date}}</td> {% endcomment %}
+
+                    {% comment %} Student.objects.filter(id=data.id) {% endcomment %}
+                    {% if data.complainant.user_type == "Student" %}
+                    {% comment %} {% comment {% student_complainant = students.filter(id == data.complainant.id) %}
+                    {% endcomment %}
+                    {%for student in students %}
+                    {% if data.complainant.id == student.id %}
+                    <td>{{ student.student_id }}</td>
+                    {% endif %}
+                    {% endfor %}
+                    {% comment %} <td>{{ data.complainant.first_name }}</td> {% endcomment %}
+                    {% else %}
+                    <td>{{ data.complainant}}</td>
+                    {% endif %}
+
+                    {% if data.complainant.user_type == "facultyMember" %}
+                    <td>Faculty</td>
+                    {% else %}
+                    <td>{{ data.complainant.user_type}}</td>
+                    {% endif %}
+                    <td> {% for offence in data.offences.all %}{{ offence }}<br />{% endfor %} </td><br>
+                    <td> {% for offender in data.offenders.all %}{{ offender }}<br />{% endfor %} </td><br>
+                    <td><a href="{% url 'complain_detail' data.id %}">
+                            <button class="btn btn-primary" type="button">Detail</button>
+                        </a>
+                    </td>
+
+                    <td>
+                        <form action="{% url 'complain_edit' data.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-secondary" value="Update">
+                        </form>
+                    </td>
+
+                    <td>
+                        <form action="{% url 'complain_delete' data.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+<br> <br>
+{% comment %} <div class="container card  text-center ">
+    {% if complain_read.has_other_pages %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination ">
+            {% if complain_read.has_previous %}
+            <li class="page-item"><a href="?page={{ complain_read.previous_page_number }}">Previous</a></li>
+            {% else %}
+            <li class="page-item disabled"><span>Prvious</span></li>
+            {% endif %}
+            {% for i in complain_read.paginator.page_range %}
+            {% if complain_read.number == i %}
+            <li class="page-item active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li class="page-item"><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if complain_read.has_next %}
+            <li class="page-item"><a href="?page={{ complain_read.next_page_number }}">Next</a></li>
+            {% else %}
+            <li class="page-item disabled"><span>Next</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+    {% endif %} {% endcomment %}
+    {% comment %} <div class="container card  text-center ">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination ">
+            {% if complain_read.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ complain_read.previous_page_number }}">Previous</a></li>
+            {% else %}
+            {% if complain_read.previous_page_number %}
+            <li class="page-item disabled"><a class="page-link" href="?page={{ complain_read.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            {% endif %}
+            {% for i in complain_read.paginator.page_range %}
+            {% if complain_read.number == i %}
+            <li class="page-item active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li class="page-item"><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if complain_read.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ complain_read.next_page_number }}">Next</a></li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link" href="?page={{ complain_read.next_page_number }}">Next</a></li>
+            {% endif %}
+        </ul>
+      </nav>
+    </div> {% endcomment %}
+    {% include 'footer.html' %}
+    {% endblock body %}

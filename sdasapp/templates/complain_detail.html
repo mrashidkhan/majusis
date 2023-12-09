@@ -1,0 +1,156 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">Complaint Detail</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        {% comment %} <h2 style="margin-top:12px" align="center">Edit Department</h2> {% endcomment %}
+        <hr>
+        <div class="form-group col-md-6">
+            <form method="post" action="{% url 'complain_read'%}">
+                {% csrf_token %}
+                
+                <label for="complain_detail" size="60" style="margin-top:10px">Complain Detail</label>
+                <input type="text" class="form-control" name="complain_detail" id="complain_detail" size="60"
+                    value="{{complain_data.complain_detail}}" disabled>
+
+                <label for="complain_date" size="60" style="margin-top:10px">Complaint Date</label>
+                <input type="text" class="form-control" name="complain_date" id="complain_date" size="60"
+                    value="{{complain_date}}" disabled>
+                <br>
+
+                <label for="incident_date" size="60" style="margin-top:10px">Incident date</label>
+                <input type="text" class="form-control" name="incident_date" id="incident_date" size="60"
+                    value="{{incident_date}}" disabled >
+                <br>
+
+                {% comment %} <label for="complainant" size="60" style="margin-top:10px">Complainant</label>
+                <input type="text" class="form-control" name="complainant" id="complainant" size="60"
+                    value="{{complain_data.complainant.student_id}}"> {% endcomment %}
+
+                <label class="mt-3"><b>Complainant</b></label>
+                <select class="form-control" name="complainant" disabled>
+                        {% for complainant in complainants %}
+                            
+                                {% if complainant.id == complain_data.complainant.id %}
+                                    <option value="{{complainant.id}}" selected>{{complainant.student_id}}</option>
+                                {% else %}
+                                    <option value="{{complainant.id}}">{{complainant.student_id}}</option>
+                                {% endif %}
+                            
+                        {% endfor %}
+                </select>
+                    {% comment %} <br>
+                <h1> {{complain_data.offender }} </h1>
+                <label class="mt-3"><b>Offenders</b></label>
+                <select class="form-control" name="Offenders" multiple>
+                    {% for offender in offenders %} {% endcomment %}
+                        {% comment %} {% for complain_offender in complain_data.offenders %} {% endcomment %}
+                            {% comment %} {% if offender.id == complain_data.offenders.id %}
+                                <option value="{{offender.id}}" selected>{{offender.student_id}}</option>
+                            {% else %}
+                                <option value="{{offender.id}}">{{offender.student_id}}</option>
+                            {% endif %} {% endcomment %}
+                        {% comment %} {% endfor %}     {% endcomment %}
+                    {% comment %} {% endfor %} {% endcomment %}
+                {% comment %} </select>
+                <br> {% endcomment %}
+                <label class="mt-3"><b>Offenders</b></label>
+                <select class="form-control" name="offenders" multiple>
+                {% comment %} {% for complain_offender in complain_data.offenders.all %}
+                    {% for offender in offenders %}   
+                 
+                    {% if offender.id == complain_offender.id %}
+                            <option value="{{complain_offender.id}}" selected>{{complain_offender.student_id}}</option>
+                        {% else %}
+                            <option value="{{offender.id}}">{{offender.student_id}}</option>
+                    {% endif %}
+                    
+                    {% endfor %} 
+                {% endfor %} 
+                </select> {% endcomment %}
+
+                {% for complain_offender in complain_data.offenders.all %}
+                    <option value="{{complain_offender.id}}" selected disabled>{{complain_offender.student_id}}</option>
+                {% endfor %}
+                
+
+                {% for student in students %}
+                    <option value="{{student.id}}" disabled>{{student.student_id}}</option>
+                {% endfor %}
+            </select>
+                {% comment %} {% for offender in offenders %}   
+                 
+                    {% if offender.id == complain_offender.id %}
+                            <option value="{{complain_offender.id}}" selected>{{complain_offender.student_id}}</option>
+                        {% else %}
+                            <option value="{{offender.id}}">{{offender.student_id}}</option>
+                    {% endif %}
+                    
+                {% endfor %}  {% endcomment %}
+
+
+
+                {% comment %} <label><b>Offences</b></label>
+                <select class="form-control" name="Offences" multiple>
+                    {% for offence in offences %}
+                    <option value="{{offence.id}}">{{offence.offence_name}}</option>
+                    {% endfor %}
+                </select>
+                <br> {% endcomment %}
+
+                <label class="mt-3"><b>Offences</b></label>
+                {% comment %} <select class="form-control" name="offences" multiple>
+                 {% for complain_offence in complain_data.offences.all %}
+                    {% for offence in offences %}   
+                 
+                    {% if offence.id == complain_offence.id %}
+                            <option value="{{complain_offence.id}}" selected>{{complain_offence.offence_name}}</option>
+                    {% else %}
+                            <option value="{{offence.id}}">{{offence.offence_name}}</option>
+                    {% endif %}
+                    
+                    {% endfor %} 
+                {% endfor %}
+                
+                </select> {% endcomment %}
+                <select class="form-control" name="offences" multiple>
+                    {% for complain_offence in complain_data.offences.all %}
+                        <option value="{{complain_offence.id}}" selected disabled>{{complain_offence.offence_name}}</option>
+                    {% endfor %}
+                
+
+                    {% for offence_notincluded in offences_notincluded %}
+                        <option value="{{offence_notincluded.id}}" disabled>{{offence_notincluded.offence_name}}</option>
+                    {% endfor %}
+                </select>    
+
+
+                <button type="submit" class="btn btn-primary" style="margin-top:12px">Submit</button>
+
+
+            </form>
+        </div>
+        <div class="form-group col-md-6">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

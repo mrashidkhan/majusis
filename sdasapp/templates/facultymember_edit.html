@@ -1,0 +1,124 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">Update Faculty Member</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        
+        <hr>
+        <div class="form-group col-md-6">
+            <form method="post" action="{% url 'facultymember_update' facultymember_data.id %}">
+                {% csrf_token %}
+
+
+                {% comment %} <label for="first_name" size="60" style="margin-top:10px">First Name</label>
+                <input type="text" class="form-control" name="first_name" id="first_name" size="60" value="{{facultymember_data.first_name}}"> {% endcomment %}
+
+                <label class="mt-3"><b>First Name</b></label>
+              <input type="text" class="form-control" name="first_name"
+              id="first_name" value="{{facultymember_data.first_name}}" onkeyup="
+              var start = this.selectionStart;
+              var end = this.selectionEnd;
+              this.value = this.value.toUpperCase();
+              this.setSelectionRange(start, end);
+            " style="text-transform:uppercase" required />
+
+                {% comment %} <label for="last_name" size="60" style="margin-top:10px">Last Name</label>
+                <input type="text" class="form-control" name="last_name" id="last_name" size="60" value="{{facultymember_data.last_name}}"> {% endcomment %}
+                
+                <label class="mt-3"><b>Last Name</b></label>
+              <input type="text" class="form-control" name="last_name"
+              id="last_name" value="{{facultymember_data.last_name}}" onkeyup="
+              var start = this.selectionStart;
+              var end = this.selectionEnd;
+              this.value = this.value.toUpperCase();
+              this.setSelectionRange(start, end);
+            " style="text-transform:uppercase" required />
+
+                {% comment %} <label for="email_id" size="60" style="margin-top:10px">Email Address</label>
+                <input type="text" class="form-control" name="email_id" id="email_id" size="60" value="{{facultymember_data.email_id}}"> {% endcomment %}
+                
+                <label class="mt-3"><b>Email ID</b></label>
+                <input type="email" class="form-control" name="email_id" value="{{facultymember_data.email_id}}" style="text-transform:lowercase" 
+                onkeyup="
+                var start = this.selectionStart;
+                var end = this.selectionEnd;
+                this.value = this.value.toLowerCase();
+                this.setSelectionRange(start, end);
+              " style="text-transform:uppercase" required />
+
+                {% comment %} <label for="contact_no" size="60" style="margin-top:10px">Contact Number</label>
+                <input type="text" class="form-control" name="contact_no" id="contact_no" size="60" value="{{facultymember_data.contact_no}}"> {% endcomment %}
+
+                <label class="mt-3"><b>Mobile Number</b></label>
+              <input type="text" class="form-control" name="contact_no" value="{{facultymember_data.contact_no}}" pattern="[03]{2}[0-4]{2}-[0-9]{7}" required />
+              <small>Format: 0333-1234567 or 0300-1234567 or 0321-1234567 or others as given pattern</small><br>
+
+                {% comment %} <label for="gender" size="60" style="margin-top:10px">Gender</label>
+                <input type="text" class="form-control" name="gender" id="gender" size="60" value="{{facultymember_data.gender}}"> {% endcomment %}
+
+                <label class="mt-3" for="gender"><b>Gender</b></label>
+              <select class="form-control" name="gender">
+                {% if facultymember_data.gender == "MALE" %}
+                <option value="MALE" selected>MALE</option>
+                <option value="FEMALE">FEMALE</option>
+                {% else %}
+                <option value="FEMALE" selected>FEMALE</option>
+                <option value="MALE">FEMALE</option>
+                {% endif %}
+              </select>
+
+              <label for="user_type" size="60" style="margin-top:10px" hidden>user_type</label>
+                <input type="text" class="form-control" name="user_type" id="user_type" size="60" value="facultyMember" hidden>
+
+                <label class="mt-3"><b>Designation</b></label>
+                <select class="form-control" name="designation">
+                    {% for designation in designations %}
+                        {% if designation == facultymember_data.designation %}
+                            <option value="{{designation.id}}" selected>{{designation.designation_name}} </option>
+                        {% else %}
+                            <option value="{{designation.id}}">{{designation.designation_name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <br> 
+
+                <label class="mt-3"><b>Department</b></label>
+                <select class="form-control" name="depts">
+                    {% for dept in deptartments %}
+                        {% if dept == facultymember_data.depts %}
+                            <option value="{{dept.id}}" selected>{{dept.dept_name}} </option>
+                        {% else %}
+                            <option value="{{dept.id}}">{{dept.dept_name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <br> 
+                <button type="submit" class="btn btn-primary" style="margin-top:12px"> Update</button>
+                
+
+            </form>
+        </div>
+        <div class="form-group col-md-6">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

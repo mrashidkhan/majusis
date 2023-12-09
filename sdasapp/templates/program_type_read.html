@@ -1,0 +1,34 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+  Live, Learn & Be Inspired
+</marquee>
+
+<div class="container card p-3 mt-5 border-dark" styles="width: 95%">
+    <a href="{% url 'add_depart' %}" class="btn btn-outline-primary mb-3">Add Program Type</a>
+    <h5 class="card p-2 text-center mb-3">List of Program Type</h5> 
+        <table class="table table-boardered text-center">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Program Type Name</th>
+                </tr>
+            </thead>
+            <!-- Data from DB -->
+            {% for data in program_type_read %}
+        <tr>
+            <td>{{ data.depart_name }}</td>
+            
+        </tr>
+        {% endfor %}
+        </table>
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

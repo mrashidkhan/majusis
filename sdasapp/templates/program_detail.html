@@ -1,0 +1,61 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<hr>
+
+<marquee class="mt-2">
+    Live, Learn & Be Inspired
+</marquee>
+
+<h5 class="card p-2 text-center mb-3">Program</h5>
+
+<div class="container card  border-dark ">
+
+    <div class="row">
+        {% comment %} <h2 style="margin-top:12px" align="center">Edit Department</h2> {% endcomment %}
+        <hr>
+        <div class="form-group col-md-6">
+            <form method="POST" action="{% url 'program_read' %}">
+                {% csrf_token %}
+
+
+                <label for="programName" size="60" style="margin-top:10px">program Name</label>
+                <input type="text" class="form-control" name="program_name" id="deptName" size="60"
+                    value="{{program_data.program_name}}" disabled>
+
+                <label for="program_codeName" size="60" style="margin-top:10px">Program Code</label>
+                <input type="text" class="form-control" name="program_code" id="program_codeName" size="60"
+                    value="{{program_data.program_code}}" disabled>
+
+                <label for="program_deptName" size="60" style="margin-top:10px">Department</label>
+                <input type="text" class="form-control" name="dept" id="program_deptName" size="60"
+                    value="{{program_data.dept}}" disabled>
+
+                <label for="program_typeName" size="60" style="margin-top:10px">Department</label>
+                <input type="text" class="form-control" name="dept" id="program_typeName" size="60"
+                    value="{{program_data.program_type}}" disabled>
+
+                <label for="program_termName" size="60" style="margin-top:10px">Term</label>
+                <input type="text" class="form-control" name="term" id="program_termName" size="60"
+                    value="{{program_data.term}}" disabled>
+
+                <button type="submit" class="btn btn-primary" style="margin-top:12px">Submit</button>
+
+
+            </form>
+        </div>
+        <div class="form-group col-md-6">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+{% include 'footer.html' %}
+{% endblock body %}

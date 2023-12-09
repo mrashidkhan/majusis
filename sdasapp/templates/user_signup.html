@@ -1,0 +1,155 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+{% comment %} <script>
+  label {
+    display: block;
+    font: 1 rem 'Fira Sans',
+    sans - serif;
+  }
+
+  input,
+  label {
+    margin: .4 rem 0;
+  }
+</script> {% endcomment %}
+
+
+<script>
+  function checkpass() {
+    if (document.signup.pwd.value != document.signup.cpwd.value) {
+      alert('Password and Repeat Password field does not match');
+      document.signup.cpwd.focus();
+      return false;
+    }
+    return true;
+  }
+</script>
+
+
+{% comment %}
+<hr> {% endcomment %}
+
+<marquee class="mt-2">
+  Live, Learn & Be Inspired
+</marquee>
+{% comment %}
+<hr> {% endcomment %}
+{% comment %} action={% url 'signup' %} {% endcomment %}
+
+{% comment %} "/student_signup/" {% endcomment %}
+{% comment %} {% url 'student_signup' %} {% endcomment %}
+<form class="container mt-3" action="/user_signup/"  onsubmit="return checkpass();" name="signup" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% comment %} <label class="mt-3"><b>UserName</b></label>
+  <input type="text" class="form-control" name="uname" placeholder="Enter username" required> {% endcomment %}
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label><b>First Name</b></label>
+      <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label><b>Last Name</b></label>
+      <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label><b>Password</b></label>
+      <input type="password" class="form-control" name="pwd" placeholder="Enter Password" required>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label><b>Confirm Password</b></label>
+      <input type="password" class="form-control" name="cpwd" placeholder="Enter Password again" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label><b>Email Address</b></label>
+      <input type="email" class="form-control" name="email" placeholder="Enter Email Address" required>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label><b>Employee ID</b></label>
+      <input type="text" class="form-control" name="dept" placeholder="Enter Employee ID" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label><b>Designation</b></label>
+      <input type="desig" class="form-control" name="desig" placeholder="Enter Designation" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label><b>Contact Number</b></label>
+      <input type="text" class="form-control" name="contact_no" placeholder="Enter Contact Number" required>
+    </div>
+  </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <fieldset class="row mb-3 mt-3" name='gender'>
+          <legend class="col-form-label col-sm-2 pt-0"><b>Gender </b></legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="genderRadios" id="male" value="male" checked>
+              <label class="form-check-label" for="male">
+                Male
+              </label>
+            </div>
+    
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="genderRadios" id="female" value="female">
+              <label class="form-check-label" for="female">
+                Female
+              </label>
+            </div>
+    
+          </div>
+        </fieldset>
+      </div>
+      
+      
+      {% comment %} <div class="form-group col-md-6">
+        <label><b>Department</b></label>
+        <input type="text" class="form-control" name="dept" placeholder="Enter Department" required>
+      </div> {% endcomment %}
+  </div>
+
+  
+    
+</div>
+
+  
+
+  <button type="submit" class="btn btn-primary">Sign Up</button>
+  
+</form>
+
+{% include 'footer.html' %}
+
+{% comment %} {% ifequal error "no" %}
+<script>
+  alert("Singup Successfully");
+  window.location = ('{% url 'user_signin' %}')
+</script>
+
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+  alert("Something went wrong, Try again ...");
+</script>
+{% endifequal %} {% endcomment %}
+
+
+{% endblock %}

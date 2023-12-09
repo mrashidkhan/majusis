@@ -1,0 +1,33 @@
+{% load static %}
+<marquee>
+    Add Meeting
+</marquee>
+
+
+{% block body %}
+{% include 'navigation.html' %}
+<script>
+    label {
+        display: block;
+        font: 1 rem 'Fira Sans',
+        sans - serif;
+    }
+  
+    input,
+    label {
+        margin: .4 rem 0;
+    }
+  </script>
+  <hr>
+  
+  <marquee>
+    Add Meeting
+  </marquee>
+  
+  <h1>Add FYP</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}

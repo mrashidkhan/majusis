@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+
+<html lang="en-us" dir="ltr">
+<head>
+    <title> is a | Change user | Django site admin</title>
+    <link rel="stylesheet" href="/static/admin/css/base.css">
+
+    <link rel="stylesheet" href="/static/admin/css/dark_mode.css">
+
+
+    <link rel="stylesheet" href="/static/admin/css/nav_sidebar.css">
+    <script src="/static/admin/js/nav_sidebar.js" defer></script>
+
+    <link rel="stylesheet" href="/static/admin/css/forms.css">
+
+
+    <script src="/admin/jsi18n/"></script>
+    <script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script src="/static/admin/js/calendar.js"></script>
+    <script src="/static/admin/js/jquery.init.js"></script>
+    <script src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+    <script src="/static/admin/js/core.js"></script>
+    <script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script src="/static/admin/js/SelectBox.js"></script>
+    <script src="/static/admin/js/actions.js"></script>
+    <script src="/static/admin/js/SelectFilter2.js"></script>
+    <script src="/static/admin/js/urlify.js"></script>
+    <script src="/static/admin/js/prepopulate.js"></script>
+    <script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/css/responsive.css">
+
+
+    <meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+<body class=" app-sdasapp model-customuser change-form" data-admin-utc-offset="0">
+
+    <!-- Container -->
+    <div id="container">
+
+
+        <!-- Header -->
+
+        <div id="header">
+            <div id="branding">
+
+                <h1 id="site-name"><a href="/admin/">Django administration</a></h1>
+
+            </div>
+
+
+            <div id="user-tools">
+
+                Welcome,
+                <strong>mustafa@gmail.com</strong>.
+
+
+
+                <a href="/">View site</a> /
+
+
+
+
+
+
+                <a href="/admin/password_change/">Change password</a> /
+
+                <form id="logout-form" method="post" action="/admin/logout/">
+                    <input type="hidden" name="csrfmiddlewaretoken"
+                        value="kfbe5kGlQLZlym84cgzaLQC7qQ8GPUO39b9RqLiZOlonG7HPIC5aRoWGKdX2UiTC">
+                    <button type="submit">Log out</button>
+                </form>
+
+            </div>
+
+
+
+        </div>
+
+        <!-- END Header -->
+
+        <div class="breadcrumbs">
+            <a href="/admin/">Home</a>
+            &rsaquo; <a href="/admin/sdasapp/">Sdasapp</a>
+            &rsaquo; <a href="/admin/sdasapp/customuser/">Users</a>
+            &rsaquo; is a
+        </div>
+
+
+
+        <div class="main" id="main">
+
+
+
+            <button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="Toggle navigation"></button>
+            <nav class="sticky" id="nav-sidebar">
+                <input type="search" id="nav-filter" placeholder="Start typing to filter…"
+                    aria-label="Filter navigation items">
+
+
+
+
+                <div class="app-auth module">
+                    <table>
+                        <caption>
+                            <a href="/admin/auth/" class="section"
+                                title="Models in the Authentication and Authorization application">Authentication and
+                                Authorization</a>
+                        </caption>
+
+                        <tr class="model-group">
+
+                            <th scope="row"><a href="/admin/auth/group/">Groups</a></th>
+
+
+
+                            <td><a href="/admin/auth/group/add/" class="addlink">Add</a></td>
+
+
+
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="app-sdasapp module current-app">
+                    <table>
+                        <caption>
+                            <a href="/admin/sdasapp/" class="section"
+                                title="Models in the Sdasapp application">Sdasapp</a>
+                        </caption>
+
+                        <tr class="model-customuser current-model">
+
+                            <th scope="row"><a href="/admin/sdasapp/customuser/" aria-current="page">Users</a></th>
+
+
+
+                            <td><a href="/admin/sdasapp/customuser/add/" class="addlink">Add</a></td>
+
+
+
+                        </tr>
+
+                    </table>
+                </div>
+
+
+
+            </nav>
+
+
+
+            <div class="content">
+
+
+
+                <!-- Content -->
+                <div id="content" class="colM">
+
+                    <h1>Change user</h1>
+                    <h2> is a </h2>
+                    <div id="content-main">
+
+
+                        <ul class="object-tools">
+
+
+
+                            <li>
+
+                                <a href="/admin/sdasapp/customuser/1/history/" class="historylink">History</a>
+                            </li>
+
+
+
+
+                        </ul>
+
+
+                        <form method="post" id="customuser_form" novalidate><input type="hidden"
+                                name="csrfmiddlewaretoken"
+                                value="kfbe5kGlQLZlym84cgzaLQC7qQ8GPUO39b9RqLiZOlonG7HPIC5aRoWGKdX2UiTC">
+                            <div>
+
+
+
+
+
+
+
+                                <fieldset class="module aligned ">
+
+
+
+                                    <div class="form-row field-username">
+
+
+                                        <div>
+
+
+                                            <label class="required" for="id_username">Username:</label>
+
+                                            <input type="text" name="username" value="mustafa@gmail.com"
+                                                class="vTextField" maxlength="150" required id="id_username">
+
+
+
+                                            <div class="help" id="id_username_helptext">
+                                                Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row field-password">
+
+
+                                        <div>
+
+
+                                            <label>Password:</label>
+
+                                            <div disabled id="id_password">
+
+                                                <strong>algorithm</strong>: pbkdf2_sha256
+
+                                                <strong>iterations</strong>: 390000
+
+                                                <strong>salt</strong>: uCgvfB****************
+
+                                                <strong>hash</strong>: 6BPf+c**************************************
+
+                                            </div>
+
+
+
+                                            <div class="help">
+                                                Raw passwords are not stored, so there is no way to see this user’s
+                                                password, but you can change the password using <a
+                                                    href="../password/">this form</a>.
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </fieldset>
+
+
+                                <fieldset class="module aligned ">
+                                    <h2>Personal info</h2>
+
+
+                                    <div class="form-row field-first_name">
+
+
+                                        <div>
+
+
+                                            <label for="id_first_name">First name:</label>
+
+                                            <input type="text" name="first_name" class="vTextField" maxlength="150"
+                                                id="id_first_name">
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row field-last_name">
+
+
+                                        <div>
+
+
+                                            <label for="id_last_name">Last name:</label>
+
+                                            <input type="text" name="last_name" class="vTextField" maxlength="150"
+                                                id="id_last_name">
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row field-email">
+
+
+                                        <div>
+
+
+                                            <label for="id_email">Email address:</label>
+
+                                            <input type="email" name="email" value="mustafa@gmail.com"
+                                                class="vTextField" maxlength="254" id="id_email">
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                </fieldset>
+
+
+                                <fieldset class="module aligned ">
+                                    <h2>Permissions</h2>
+
+
+                                    <div class="form-row field-is_active">
+
+
+                                        <div class="checkbox-row">
+
+
+                                            <input type="checkbox" name="is_active" id="id_is_active" checked><label
+                                                class="vCheckboxLabel" for="id_is_active">Active</label>
+
+
+                                            <div class="help" id="id_is_active_helptext">
+                                                Designates whether this user should be treated as active. Unselect this
+                                                instead of deleting accounts.
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row field-is_staff">
+
+
+                                        <div class="checkbox-row">
+
+
+                                            <input type="checkbox" name="is_staff" id="id_is_staff" checked><label
+                                                class="vCheckboxLabel" for="id_is_staff">Staff status</label>
+
+
+                                            <div class="help" id="id_is_staff_helptext">
+                                                Designates whether the user can log into this admin site.
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row field-is_superuser">
+
+
+                                        <div class="checkbox-row">
+
+
+                                            <input type="checkbox" name="is_superuser" id="id_is_superuser"
+                                                checked><label class="vCheckboxLabel" for="id_is_superuser">Superuser
+                                                status</label>
+
+
+                                            <div class="help" id="id_is_superuser_helptext">
+                                                Designates that this user has all permissions without explicitly
+                                                assigning them.
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row field-groups">
+
+
+                                        <div>
+
+
+                                            <label for="id_groups">Groups:</label>
+
+                                            <div class="related-widget-wrapper" data-model-ref="group">
+                                                <select name="groups" id="id_groups" multiple class="selectfilter"
+                                                    data-field-name="groups" data-is-stacked="0">
+                                                </select>
+
+                                                <a class="related-widget-wrapper-link add-related" id="add_id_groups"
+                                                    data-popup="yes"
+                                                    href="/admin/auth/group/add/?_to_field=id&amp;_popup=1"
+                                                    title="Add another group"><img
+                                                        src="/static/admin/img/icon-addlink.svg" alt="Add"></a>
+
+                                            </div>
+
+
+
+                                            <div class="help" id="id_groups_helptext">
+                                                The groups this user belongs to. A user will get all permissions granted
+                                                to each of their groups. Hold down “Control”, or “Command” on a Mac, to
+                                                select more than one.
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row field-user_permissions">
+
+
+                                        <div>
+
+
+                                            <label for="id_user_permissions">User permissions:</label>
+
+                                            <div class="related-widget-wrapper" data-model-ref="permission">
+                                                <select name="user_permissions" id="id_user_permissions" multiple
+                                                    class="selectfilter" data-field-name="user permissions"
+                                                    data-is-stacked="0">
+                                                    <option value="1">admin | log entry | Can add log entry</option>
+
+                                                    <option value="2">admin | log entry | Can change log entry</option>
+
+                                                    <option value="3">admin | log entry | Can delete log entry</option>
+
+                                                    <option value="4">admin | log entry | Can view log entry</option>
+
+                                                    <option value="9">auth | group | Can add group</option>
+
+                                                    <option value="10">auth | group | Can change group</option>
+
+                                                    <option value="11">auth | group | Can delete group</option>
+
+                                                    <option value="12">auth | group | Can view group</option>
+
+                                                    <option value="5">auth | permission | Can add permission</option>
+
+                                                    <option value="6">auth | permission | Can change permission</option>
+
+                                                    <option value="7">auth | permission | Can delete permission</option>
+
+                                                    <option value="8">auth | permission | Can view permission</option>
+
+                                                    <option value="13">contenttypes | content type | Can add content
+                                                        type</option>
+
+                                                    <option value="14">contenttypes | content type | Can change content
+                                                        type</option>
+
+                                                    <option value="15">contenttypes | content type | Can delete content
+                                                        type</option>
+
+                                                    <option value="16">contenttypes | content type | Can view content
+                                                        type</option>
+
+                                                    <option value="117">sdasapp | attendance | Can add attendance
+                                                    </option>
+
+                                                    <option value="118">sdasapp | attendance | Can change attendance
+                                                    </option>
+
+                                                    <option value="119">sdasapp | attendance | Can delete attendance
+                                                    </option>
+
+                                                    <option value="120">sdasapp | attendance | Can view attendance
+                                                    </option>
+
+                                                    <option value="25">sdasapp | committee | Can add committee</option>
+
+                                                    <option value="26">sdasapp | committee | Can change committee
+                                                    </option>
+
+                                                    <option value="27">sdasapp | committee | Can delete committee
+                                                    </option>
+
+                                                    <option value="28">sdasapp | committee | Can view committee</option>
+
+                                                    <option value="29">sdasapp | complain | Can add complain</option>
+
+                                                    <option value="30">sdasapp | complain | Can change complain</option>
+
+                                                    <option value="31">sdasapp | complain | Can delete complain</option>
+
+                                                    <option value="32">sdasapp | complain | Can view complain</option>
+
+                                                    <option value="121">sdasapp | user | Can add user</option>
+
+                                                    <option value="122">sdasapp | user | Can change user</option>
+
+                                                    <option value="123">sdasapp | user | Can delete user</option>
+
+                                                    <option value="124">sdasapp | user | Can view user</option>
+
+                                                    <option value="113">sdasapp | complain_ committee | Can add
+                                                        complain_ committee</option>
+
+                                                    <option value="114">sdasapp | complain_ committee | Can change
+                                                        complain_ committee</option>
+
+                                                    <option value="115">sdasapp | complain_ committee | Can delete
+                                                        complain_ committee</option>
+
+                                                    <option value="116">sdasapp | complain_ committee | Can view
+                                                        complain_ committee</option>
+
+                                                    <option value="33">sdasapp | complain_ meeting | Can add complain_
+                                                        meeting</option>
+
+                                                    <option value="34">sdasapp | complain_ meeting | Can change
+                                                        complain_ meeting</option>
+
+                                                    <option value="35">sdasapp | complain_ meeting | Can delete
+                                                        complain_ meeting</option>
+
+                                                    <option value="36">sdasapp | complain_ meeting | Can view complain_
+                                                        meeting</option>
+
+                                                    <option value="37">sdasapp | complain_ offence | Can add complain_
+                                                        offence</option>
+
+                                                    <option value="38">sdasapp | complain_ offence | Can change
+                                                        complain_ offence</option>
+
+                                                    <option value="39">sdasapp | complain_ offence | Can delete
+                                                        complain_ offence</option>
+
+                                                    <option value="40">sdasapp | complain_ offence | Can view complain_
+                                                        offence</option>
+
+                                                    <option value="129">sdasapp | complain_ offender | Can add complain_
+                                                        offender</option>
+
+                                                    <option value="130">sdasapp | complain_ offender | Can change
+                                                        complain_ offender</option>
+
+                                                    <option value="131">sdasapp | complain_ offender | Can delete
+                                                        complain_ offender</option>
+
+                                                    <option value="132">sdasapp | complain_ offender | Can view
+                                                        complain_ offender</option>
+
+                                                    <option value="21">sdasapp | user | Can add user</option>
+
+                                                    <option value="22">sdasapp | user | Can change user</option>
+
+                                                    <option value="23">sdasapp | user | Can delete user</option>
+
+                                                    <option value="24">sdasapp | user | Can view user</option>
+
+                                                    <option value="41">sdasapp | decision | Can add decision</option>
+
+                                                    <option value="42">sdasapp | decision | Can change decision</option>
+
+                                                    <option value="43">sdasapp | decision | Can delete decision</option>
+
+                                                    <option value="44">sdasapp | decision | Can view decision</option>
+
+                                                    <option value="45">sdasapp | decision_ penalty | Can add decision_
+                                                        penalty</option>
+
+                                                    <option value="46">sdasapp | decision_ penalty | Can change
+                                                        decision_ penalty</option>
+
+                                                    <option value="47">sdasapp | decision_ penalty | Can delete
+                                                        decision_ penalty</option>
+
+                                                    <option value="48">sdasapp | decision_ penalty | Can view decision_
+                                                        penalty</option>
+
+                                                    <option value="49">sdasapp | dept | Can add dept</option>
+
+                                                    <option value="50">sdasapp | dept | Can change dept</option>
+
+                                                    <option value="51">sdasapp | dept | Can delete dept</option>
+
+                                                    <option value="52">sdasapp | dept | Can view dept</option>
+
+                                                    <option value="53">sdasapp | dept_ faculty member | Can add dept_
+                                                        faculty member</option>
+
+                                                    <option value="54">sdasapp | dept_ faculty member | Can change dept_
+                                                        faculty member</option>
+
+                                                    <option value="55">sdasapp | dept_ faculty member | Can delete dept_
+                                                        faculty member</option>
+
+                                                    <option value="56">sdasapp | dept_ faculty member | Can view dept_
+                                                        faculty member</option>
+
+                                                    <option value="57">sdasapp | dept_ staff | Can add dept_ staff
+                                                    </option>
+
+                                                    <option value="58">sdasapp | dept_ staff | Can change dept_ staff
+                                                    </option>
+
+                                                    <option value="59">sdasapp | dept_ staff | Can delete dept_ staff
+                                                    </option>
+
+                                                    <option value="60">sdasapp | dept_ staff | Can view dept_ staff
+                                                    </option>
+
+                                                    <option value="61">sdasapp | faculty | Can add faculty</option>
+
+                                                    <option value="62">sdasapp | faculty | Can change faculty</option>
+
+                                                    <option value="63">sdasapp | faculty | Can delete faculty</option>
+
+                                                    <option value="64">sdasapp | faculty | Can view faculty</option>
+
+                                                    <option value="69">sdasapp | faculty member | Can add faculty member
+                                                    </option>
+
+                                                    <option value="70">sdasapp | faculty member | Can change faculty
+                                                        member</option>
+
+                                                    <option value="71">sdasapp | faculty member | Can delete faculty
+                                                        member</option>
+
+                                                    <option value="72">sdasapp | faculty member | Can view faculty
+                                                        member</option>
+
+                                                    <option value="109">sdasapp | faculty member_ committee | Can add
+                                                        faculty member_ committee</option>
+
+                                                    <option value="110">sdasapp | faculty member_ committee | Can change
+                                                        faculty member_ committee</option>
+
+                                                    <option value="111">sdasapp | faculty member_ committee | Can delete
+                                                        faculty member_ committee</option>
+
+                                                    <option value="112">sdasapp | faculty member_ committee | Can view
+                                                        faculty member_ committee</option>
+
+                                                    <option value="105">sdasapp | faculty member_ meeting | Can add
+                                                        faculty member_ meeting</option>
+
+                                                    <option value="106">sdasapp | faculty member_ meeting | Can change
+                                                        faculty member_ meeting</option>
+
+                                                    <option value="107">sdasapp | faculty member_ meeting | Can delete
+                                                        faculty member_ meeting</option>
+
+                                                    <option value="108">sdasapp | faculty member_ meeting | Can view
+                                                        faculty member_ meeting</option>
+
+                                                    <option value="65">sdasapp | faculty_ audit | Can add faculty_ audit
+                                                    </option>
+
+                                                    <option value="66">sdasapp | faculty_ audit | Can change faculty_
+                                                        audit</option>
+
+                                                    <option value="67">sdasapp | faculty_ audit | Can delete faculty_
+                                                        audit</option>
+
+                                                    <option value="68">sdasapp | faculty_ audit | Can view faculty_
+                                                        audit</option>
+
+                                                    <option value="73">sdasapp | meeting | Can add meeting</option>
+
+                                                    <option value="74">sdasapp | meeting | Can change meeting</option>
+
+                                                    <option value="75">sdasapp | meeting | Can delete meeting</option>
+
+                                                    <option value="76">sdasapp | meeting | Can view meeting</option>
+
+                                                    <option value="101">sdasapp | meeting_ decision | Can add meeting_
+                                                        decision</option>
+
+                                                    <option value="102">sdasapp | meeting_ decision | Can change
+                                                        meeting_ decision</option>
+
+                                                    <option value="103">sdasapp | meeting_ decision | Can delete
+                                                        meeting_ decision</option>
+
+                                                    <option value="104">sdasapp | meeting_ decision | Can view meeting_
+                                                        decision</option>
+
+                                                    <option value="97">sdasapp | offence | Can add offence</option>
+
+                                                    <option value="98">sdasapp | offence | Can change offence</option>
+
+                                                    <option value="99">sdasapp | offence | Can delete offence</option>
+
+                                                    <option value="100">sdasapp | offence | Can view offence</option>
+
+                                                    <option value="125">sdasapp | user | Can add user</option>
+
+                                                    <option value="126">sdasapp | user | Can change user</option>
+
+                                                    <option value="127">sdasapp | user | Can delete user</option>
+
+                                                    <option value="128">sdasapp | user | Can view user</option>
+
+                                                    <option value="93">sdasapp | penalty | Can add penalty</option>
+
+                                                    <option value="94">sdasapp | penalty | Can change penalty</option>
+
+                                                    <option value="95">sdasapp | penalty | Can delete penalty</option>
+
+                                                    <option value="96">sdasapp | penalty | Can view penalty</option>
+
+                                                    <option value="89">sdasapp | program | Can add program</option>
+
+                                                    <option value="90">sdasapp | program | Can change program</option>
+
+                                                    <option value="91">sdasapp | program | Can delete program</option>
+
+                                                    <option value="92">sdasapp | program | Can view program</option>
+
+                                                    <option value="77">sdasapp | staff | Can add staff</option>
+
+                                                    <option value="78">sdasapp | staff | Can change staff</option>
+
+                                                    <option value="79">sdasapp | staff | Can delete staff</option>
+
+                                                    <option value="80">sdasapp | staff | Can view staff</option>
+
+                                                    <option value="85">sdasapp | staff_ committee | Can add staff_
+                                                        committee</option>
+
+                                                    <option value="86">sdasapp | staff_ committee | Can change staff_
+                                                        committee</option>
+
+                                                    <option value="87">sdasapp | staff_ committee | Can delete staff_
+                                                        committee</option>
+
+                                                    <option value="88">sdasapp | staff_ committee | Can view staff_
+                                                        committee</option>
+
+                                                    <option value="81">sdasapp | user | Can add user</option>
+
+                                                    <option value="82">sdasapp | user | Can change user</option>
+
+                                                    <option value="83">sdasapp | user | Can delete user</option>
+
+                                                    <option value="84">sdasapp | user | Can view user</option>
+
+                                                    <option value="17">sessions | session | Can add session</option>
+
+                                                    <option value="18">sessions | session | Can change session</option>
+
+                                                    <option value="19">sessions | session | Can delete session</option>
+
+                                                    <option value="20">sessions | session | Can view session</option>
+
+                                                </select>
+
+
+
+                                            </div>
+
+
+
+                                            <div class="help" id="id_user_permissions_helptext">
+                                                Specific permissions for this user. Hold down “Control”, or “Command” on
+                                                a Mac, to select more than one.
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </fieldset>
+
+
+                                <fieldset class="module aligned ">
+                                    <h2>Important dates</h2>
+
+
+                                    <div class="form-row field-last_login">
+
+  
+                                        <div>
+
+
+                                            <label>Last login:</label>
+
+                                            <p class="datetime">
+                                                Date: <input type="text" name="last_login_0" value="2022-11-01"
+                                                    class="vDateField" size="10" id="id_last_login_0">
+
+                                                <br>
+                                                Time: <input type="text" name="last_login_1" value="12:56:10"
+                                                    class="vTimeField" size="8" id="id_last_login_1">
+
+
+                                            </p>
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row field-date_joined">
+
+
+                                        <div>
+
+
+                                            <label class="required">Date joined:</label>
+
+                                            <p class="datetime">
+                                                Date: <input type="text" name="date_joined_0" value="2022-11-01"
+                                                    class="vDateField" size="10" required id="id_date_joined_0">
+
+                                                <br>
+                                                Time: <input type="text" name="date_joined_1" value="12:54:29"
+                                                    class="vTimeField" size="8" required id="id_date_joined_1">
+
+
+                                            </p><input type="hidden" name="initial-date_joined_0" value="2022-11-01"
+                                                id="initial-id_date_joined_0"><input type="hidden"
+                                                name="initial-date_joined_1" value="12:54:29"
+                                                id="initial-id_date_joined_1">
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                </fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="submit-row">
+
+                                    <input type="submit" value="Save" class="default" name="_save">
+
+
+                                    <p class="deletelink-box"><a href="/admin/sdasapp/customuser/1/delete/"
+                                            class="deletelink">Delete</a></p>
+
+
+                                    <input type="submit" value="Save and add another" name="_addanother">
+                                    <input type="submit" value="Save and continue editing" name="_continue">
+
+
+                                </div>
+
+
+
+                                <script id="django-admin-form-add-constants" src="/static/admin/js/change_form.js"
+                                    async>
+                                </script>
+
+
+
+
+                                <script id="django-admin-prepopulated-fields-constants"
+                                    src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]">
+                                </script>
+
+
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <br class="clear">
+                </div>
+                <!-- END Content -->
+                <div id="footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END Container -->
+</body>
+</html>

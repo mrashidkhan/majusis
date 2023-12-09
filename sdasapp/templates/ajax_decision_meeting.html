@@ -1,0 +1,6 @@
+<option value="">------Select Complaint-----</option>
+{% for complain in complains %}
+    
+        <option value= "{{complain.id}}">Complaint_{{complain.id}}</option>
+    
+{% endfor %}

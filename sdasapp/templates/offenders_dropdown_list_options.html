@@ -1,0 +1,5 @@
+{% comment %} <option value="">------Select Of-----</option> {% endcomment %}
+
+{% for data in offenders %}
+<option value="{{ data.id }}">{{data.student_id}}</option>
+{% endfor %}
